@@ -1,0 +1,32 @@
+# MkDocs build output
+site/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# Drafts
+docs/drafts/
+
+# 参考画像・素材（外部権利物の生データはコミットしない方針）
+raw/**
+!raw/.gitkeep
+!raw/README.md
+
+# 中間生成物
+work/**
+!work/.gitkeep
