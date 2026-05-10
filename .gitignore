@@ -30,3 +30,8 @@ raw/**
 # 中間生成物
 work/**
 !work/.gitkeep
+
+# キャラ素材・背景・参考画像（ローカル専用、リポには含めない）
+resources/**
+!resources/.gitkeep
+!resources/README.md
