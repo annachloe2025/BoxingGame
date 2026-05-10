@@ -90,10 +90,26 @@ BoxingGame/
 - 過剰な前置きや説明は避ける、要点先行で
 - **設計が固まる前に実装を走らせない**（前回の反省）
 
-### 4.3. ファイル書き込み
-- **bash heredoc を優先**。Windows 経由の Edit/Write はまれに末尾切れる
-    - 書いたら `wc -c` と `tail` で末尾整合性を確認
-    - NUL 除去：`python -c "import pathlib;p=pathlib.Path('xxx');p.write_bytes(p.read_bytes().rstrip(b'\\x00'))"`
+### 4.3. ファイル書き込み（重要・2026-05-10 更新）
+
+**Edit/Write は実際は壊れていない。bash 側の 9P キャッシュが stale なだけ**。
+[anthropic/claude-code #28015](https://github.com/anthropics/claude-code/issues/28015) の症状で、
+WSL2 の 9P/drvfs マウント越しに `/mnt/c/...` を読むと、Windows ホスト側で書かれた変更が反映されない。
+
+#### やること
+- **Edit/Write が成功を返したら、内容は正しい**。bashで `cat`/`tail`/`wc` を使った末尾チェックはしない（古いキャッシュが見えるだけ）。
+- 確認が必要なら **Read ツールを使う**（Edit と同じホスト側の経路）。
+- node --check したい場合: Read で取得 → outputs/ 配下に書き出し → そこで `node --check`。
+
+#### やらないこと（今までやってしまっていた地雷）
+- ❌ Edit直後に bash で `tail` してファイル末尾切れを疑う（→ 偽警報）
+- ❌ heredoc で全文書き直し（→ 不要な巨大書き換えで他のミス誘発）
+- ❌ NUL 除去スクリプト（→ そもそも問題が違う）
+
+#### どうしても bash で確認したい場合
+- `ls -la <file>` の方が `stat` 系よりキャッシュ更新されやすい
+- `touch -a <file>` でアクセス時刻だけ叩くとキャッシュが refreshされる事がある
+- 最終手段: WSL 再起動 or `wsl --shutdown`（ユーザー側操作）
 
 ### 4.4. 日付フォーマット
 - `YYYY-MM-DD`（例: `2026-05-10`）

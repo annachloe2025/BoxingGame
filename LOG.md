@@ -4,6 +4,28 @@
 
 ---
 
+## 2026-05-10 — 9P キャッシュ問題の発見と CLAUDE.md 更新
+
+- 「Edit すると末尾切れる」と思っていた現象は、実は **WSL2 の 9P/drvfs キャッシュが stale だっただけ**。
+    - 参考: anthropic/claude-code [#28015](https://github.com/anthropics/claude-code/issues/28015)
+    - Edit ツールは Windows ホスト側に書く → 正常完了
+    - bash の `cat`/`tail`/`wc` は 9P 経由で読む → 古いキャッシュが見える
+- 結果として Edit 成功を疑って毎回 heredoc で巨大な書き直しをしていた（無駄）
+- CLAUDE.md §4.3 を更新: 「Edit 成功を信頼、確認は Read ツール経由、bash でファイル末尾チェックはしない」方針へ
+
+---
+
+## 2026-05-10 — 戦闘プロトv0 完成
+
+- `prototype/battle.html` を作成（1ファイル完結のHTMLプロト）
+- 10キャラから2人選んで戦える EXHIBITION モード
+- 設計書の戦闘ロジック（オフェンス8 × ディフェンス5、距離5段階、リングポジション3段階、ダウン10カウント、3KD制、3R判定）を全部実装
+- 数値はすべて仮値（ファイル内の `CHARACTERS / TECHS / EVADE_RATE / COUNTER_RATE` を直接編集すれば調整可）
+- `resources/chara/` の立ち絵と `resources/background/` の背景を相対パスで読む
+- まだ実装していない: スキル効果 / 必殺フロー / 立ち絵ポーズ差分 / 中央カットイン演出 / 効果音 / セーブ
+
+---
+
 ## 2026-05-10 — resources/ を git管理外に変更、samples を元に戻した
 
 - ユーザー指示で `resources/` 全体を gitignore に追加（キャラ画像はローカル専用）
