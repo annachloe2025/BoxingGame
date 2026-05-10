@@ -475,43 +475,43 @@ body {
 const CHARACTERS = [
   { id:1, name:"エリー・ヴィオラ", style:"アウトボクサー",
     img:"standing/01_エリー_ヴィオラ_standing.png",
-    stats:{ head_hp:14, body_hp:14, punch_power:12, endurance:13, stamina:17, toughness:12, counter:14,
+    stats:{ head_hp:140, body_hp:140, punch_power:12, endurance:13, stamina:17, toughness:12, counter:14,
             jab_atk:18, jab_def:16, straight_atk:16, straight_def:14, hook_atk:12, hook_def:12, upper_atk:10, upper_def:11 } },
   { id:2, name:"黒峰 サツキ", style:"カウンター",
     img:"standing/02_黒峰_サツキ_standing.png",
-    stats:{ head_hp:14, body_hp:14, punch_power:13, endurance:14, stamina:13, toughness:14, counter:18,
+    stats:{ head_hp:140, body_hp:140, punch_power:13, endurance:14, stamina:13, toughness:14, counter:18,
             jab_atk:14, jab_def:16, straight_atk:14, straight_def:16, hook_atk:13, hook_def:16, upper_atk:12, upper_def:15 } },
   { id:3, name:"エマ・ゴールドリーフ", style:"インファイト",
     img:"standing/03_エマ_ゴールドリーフ_standing.png",
-    stats:{ head_hp:15, body_hp:15, punch_power:15, endurance:15, stamina:13, toughness:14, counter:13,
+    stats:{ head_hp:150, body_hp:150, punch_power:15, endurance:15, stamina:13, toughness:14, counter:13,
             jab_atk:13, jab_def:13, straight_atk:13, straight_def:14, hook_atk:15, hook_def:14, upper_atk:17, upper_def:15 } },
   { id:4, name:"赤城 ナギサ", style:"ハードパンチャー",
     img:"standing/04_赤城_ナギサ_standing.png",
-    stats:{ head_hp:14, body_hp:14, punch_power:18, endurance:13, stamina:11, toughness:13, counter:11,
+    stats:{ head_hp:140, body_hp:140, punch_power:18, endurance:13, stamina:11, toughness:13, counter:11,
             jab_atk:12, jab_def:11, straight_atk:14, straight_def:12, hook_atk:17, hook_def:12, upper_atk:17, upper_def:12 } },
   { id:5, name:"桜野 アイリ", style:"コントロール",
     img:"standing/05_桜野_アイリ_standing.png",
-    stats:{ head_hp:13, body_hp:13, punch_power:11, endurance:13, stamina:14, toughness:14, counter:16,
+    stats:{ head_hp:130, body_hp:130, punch_power:11, endurance:13, stamina:14, toughness:14, counter:16,
             jab_atk:14, jab_def:16, straight_atk:13, straight_def:15, hook_atk:12, hook_def:16, upper_atk:11, upper_def:15 } },
   { id:6, name:"橙川 ヒカリ", style:"ラッシュ",
     img:"standing/06_橙川_ヒカリ_standing.png",
-    stats:{ head_hp:13, body_hp:13, punch_power:14, endurance:12, stamina:16, toughness:13, counter:11,
+    stats:{ head_hp:130, body_hp:130, punch_power:14, endurance:12, stamina:16, toughness:13, counter:11,
             jab_atk:17, jab_def:12, straight_atk:15, straight_def:12, hook_atk:14, hook_def:12, upper_atk:13, upper_def:12 } },
   { id:7, name:"ミラ・アッシュフォード", style:"省エネアウト",
     img:"standing/07_ミラ_アッシュフォード_standing.png",
-    stats:{ head_hp:14, body_hp:14, punch_power:12, endurance:16, stamina:18, toughness:14, counter:14,
+    stats:{ head_hp:140, body_hp:140, punch_power:12, endurance:16, stamina:18, toughness:14, counter:14,
             jab_atk:16, jab_def:15, straight_atk:17, straight_def:15, hook_atk:12, hook_def:13, upper_atk:10, upper_def:12 } },
   { id:8, name:"シオン・水無月", style:"コントロール",
     img:"standing/08_シオン_水無月_standing.png",
-    stats:{ head_hp:13, body_hp:13, punch_power:12, endurance:13, stamina:15, toughness:13, counter:14,
+    stats:{ head_hp:130, body_hp:130, punch_power:12, endurance:13, stamina:15, toughness:13, counter:14,
             jab_atk:17, jab_def:15, straight_atk:15, straight_def:14, hook_atk:13, hook_def:13, upper_atk:11, upper_def:13 } },
   { id:9, name:"リン・スカーレット", style:"プレッシャー",
     img:"standing/09_リン_スカーレット_standing.png",
-    stats:{ head_hp:15, body_hp:15, punch_power:16, endurance:15, stamina:14, toughness:15, counter:11,
+    stats:{ head_hp:150, body_hp:150, punch_power:16, endurance:15, stamina:14, toughness:15, counter:11,
             jab_atk:13, jab_def:12, straight_atk:13, straight_def:12, hook_atk:17, hook_def:12, upper_atk:15, upper_def:12 } },
   { id:10, name:"ハルカ・緑里", style:"テクニック",
     img:"standing/10_ハルカ_緑里_standing.png",
-    stats:{ head_hp:13, body_hp:13, punch_power:11, endurance:12, stamina:14, toughness:13, counter:17,
+    stats:{ head_hp:130, body_hp:130, punch_power:11, endurance:12, stamina:14, toughness:13, counter:17,
             jab_atk:14, jab_def:16, straight_atk:13, straight_def:16, hook_atk:12, hook_def:16, upper_atk:11, upper_def:15 } },
 ];
 
@@ -862,10 +862,11 @@ async function executeTurn() {
       } else {
         state.round++;
         state.turn = 1;
-        p.head_hp = Math.min(p.head_hp_max, p.head_hp + 4);
-        p.body_hp = Math.min(p.body_hp_max, p.body_hp + 4);
-        e.head_hp = Math.min(e.head_hp_max, e.head_hp + 4);
-        e.body_hp = Math.min(e.body_hp_max, e.body_hp + 4);
+        // インターバル回復: HP×10 にスケールしたので比例的に上げた
+        p.head_hp = Math.min(p.head_hp_max, p.head_hp + 20);
+        p.body_hp = Math.min(p.body_hp_max, p.body_hp + 20);
+        e.head_hp = Math.min(e.head_hp_max, e.head_hp + 20);
+        e.body_hp = Math.min(e.body_hp_max, e.body_hp + 20);
         p.sta = p.sta_max; e.sta = e.sta_max;
         p.kd = 0; e.kd = 0;
         p.pos = 0; e.pos = 0;
